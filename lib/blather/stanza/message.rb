@@ -291,7 +291,7 @@ class Stanza
     #
     # @return [String]
     def xhtml
-      self.xhtml_node.inner_html.strip
+      self.xhtml_node.to_xhtml
     end
 
     # Set the message xhtml
@@ -299,7 +299,10 @@ class Stanza
     #
     # @param [#to_s] valid xhtml
     def xhtml=(xhtml_body)
-      self.xhtml_node.inner_html = Nokogiri::XML::DocumentFragment.parse(xhtml_body)
+      xhtml_body = Nokogiri::XML(xhtml_body)
+      xhtml_body.children.each {|node|
+        self.xhtml_node << node
+      }
     end
 
     # Get the message subject
