@@ -179,8 +179,8 @@ class Stanza
         ns = e.namespace ? e.namespace.href : nil
         klass = class_from_registration(e.element_name, ns)
       end
-
-      if klass && klass != self && ![Blather::Stanza::X, Blather::Stanza::Iq].include?(klass)
+      
+      if klass && klass != self
         klass.import(node)
       else
         new(node[:type]).inherit(node)
