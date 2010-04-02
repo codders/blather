@@ -34,3 +34,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency("bluecloth", ["~> 2.1.0"])
   s.add_development_dependency("rake")
 end
+
