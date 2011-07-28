@@ -103,6 +103,7 @@ class Stanza
     def self.find_klass(node)
       presence = self.new.inherit(node)
       return MUC if presence.muc?
+      return MUCUser if presence.muc_user?
       return Subscription if presence.subscription?
       return Status if presence.status?
       self
@@ -116,7 +117,11 @@ class Stanza
     def muc?
       find_first('ns:x', :ns => 'http://jabber.org/protocol/muc')
     end
-    
+ 
+    def muc_user?
+      find_first('ns:x', :ns => 'http://jabber.org/protocol/muc#user')
+    end
+   
     def status?
       unavailable? || !type
     end

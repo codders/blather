@@ -4,7 +4,6 @@ module MUC
 module Message
 
   class X < XMPPNode
-    register :x, "http://jabber.org/protocol/muc#user"
 
     def self.import(node)
       klass = nil

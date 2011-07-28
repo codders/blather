@@ -201,7 +201,12 @@ module Blather
           )
         end
       end
-      @receiver.receive_data @node.to_stanza
+      stanza = @node.to_stanza
+      if (stanza)
+        @receiver.receive_data(stanza)
+      else
+        Blather.logger.debug "WARNING No handler found for #{@node}"
+      end
     end
 
     # Ensure the JID gets attached to the client
