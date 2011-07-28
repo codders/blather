@@ -103,7 +103,7 @@ class Stanza
     def self.find_klass(node)
       presence = self.new.inherit(node)
       return MUC if presence.muc?
-      return Subscription if presence.subscribe?
+      return Subscription if presence.subscription?
       return Status if presence.status?
       self
     end
@@ -119,6 +119,10 @@ class Stanza
     
     def status?
       unavailable? || !type
+    end
+
+    def subscription?
+      type.to_s =~ /subscribe/
     end
 
     # Check if the IQ is of type :unavailable

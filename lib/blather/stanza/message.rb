@@ -181,8 +181,8 @@ class Stanza
         ns = e.namespace ? e.namespace.href : nil
         klass = class_from_registration(e.element_name, ns)
       end
-      
-      if klass && klass != self
+
+      if klass && klass != self && ![Blather::Stanza::X, Blather::Stanza::Iq].include?(klass)
         klass.import(node)
       else
         new(node[:type]).inherit(node)
@@ -293,7 +293,7 @@ class Stanza
     #
     # @return [String]
     def xhtml
-      self.xhtml_node.to_xhtml
+      self.xhtml_node.inner_html.strip
     end
 
     # Set the message xhtml
