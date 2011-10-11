@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = %w{--charset=UTF-8}
   s.extra_rdoc_files = %w{LICENSE README.md}
 
-  s.add_dependency("eventmachine", ["~> 0.12.6"])
+  s.add_dependency("eventmachine", [">= 1.0.0.beta.3"])
   s.add_dependency("nokogiri", [">= 1.4.0"])
   s.add_dependency("niceogiri", [">= 0.0.4"])
   s.add_dependency("minitest", [">= 1.7.1"])
